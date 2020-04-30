@@ -1,0 +1,28 @@
+.thumb{
+    z-index: 100;
+    position: absolute;
+    left: 100px;
+    top: 230px;
+}
+.nome{
+    left: 325px;
+    top: 15px;
+}
+.nomep{
+    font-size: 1.2em;
+}
+.nomeb{
+    display: inline-block;
+}
+.about{
+    height: 300px;
+}
+.ab{
+    font-size: 2em;
+}
+.cert{
+    display: inline-block;
+}
+.pc{
+    font-size: 0.7em;
+}
