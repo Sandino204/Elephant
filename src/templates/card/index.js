@@ -6,14 +6,15 @@ import Cga from '../../assets/AnbimaCGA.png'
 import Cpa20 from "../../assets/AnbimaCPA-20.png"
 import Cpa10 from '../../assets/AnbimaCPA-10.png'
 import Cnpi from '../../assets/AnbimaCNPI-T.PNG'
+import {Link} from 'react-router-dom'
 
 import './styles.css'
 
-function TCard ({name, cea, cga, cpa10, cpa20, cnpi, presentation, acoes, percent, consultory, training, course}){
+function TCard ({id, name, cea, cga, cpa10, cpa20, cnpi, presentation, acoes, percent, consultory, training, course}){
 
 
     function renderCea(cea){
-        if (cea === true){
+        if (cea !== null && cea !== undefined){
             return(
                 <img src={Cea} alt="Anbima Cea" className="cert" style={{width: "50px", height: "50px"}}/>
             )
@@ -25,7 +26,7 @@ function TCard ({name, cea, cga, cpa10, cpa20, cnpi, presentation, acoes, percen
     }
 
     function renderCga(cga){
-        if (cga === true){
+        if (cga !== null && cga !== undefined){
             return(
                 <img src={Cga} alt="Anbima Cga" className="cert" style={{width: "50px", height: "50px"}}/>
             )
@@ -37,7 +38,7 @@ function TCard ({name, cea, cga, cpa10, cpa20, cnpi, presentation, acoes, percen
     }
 
     function renderCpa20(cpa20){
-        if(cpa20 === true){
+        if(cpa20 !== null && cpa20 !== undefined){
             return(
                 <img src={Cpa20} alt="Anbima CPA - 20" className="cert" style={{width: "50px", height: "50px"}}/>
             )
@@ -49,7 +50,7 @@ function TCard ({name, cea, cga, cpa10, cpa20, cnpi, presentation, acoes, percen
     }
 
     function renderCpa10(cpa10){
-        if(cpa10  === true){
+        if(cpa10  !== null && cpa10 !== undefined){
             return(
                 <img src={Cpa10} alt="Anbima CPA - 10" className="cert" style={{width: "50px", height: "50px"}}/>
             )
@@ -61,7 +62,7 @@ function TCard ({name, cea, cga, cpa10, cpa20, cnpi, presentation, acoes, percen
     }
 
     function renderCnpi(cnpi){
-        if(cnpi  === true){
+        if(cnpi  !== null && cnpi !== undefined){
             return(
                 <img src={Cnpi} alt="Anbima CNPI" className="cert" style={{width: "50px", height: "50px"}}/>
             )
@@ -84,11 +85,11 @@ function TCard ({name, cea, cga, cpa10, cpa20, cnpi, presentation, acoes, percen
     }
 
     return(
-        <Card className="col-12 mt-5 rounded p-0 row card shadow">
+        <Card key={id} className="col-12 mt-5 rounded p-0 row card shadow">
             <div className="ml-5 col-8 p-0 row mt-5 ml-3">
                 <img className=" col-4" src={tumb} alt={name} className="rounded-circle tumb" style={{width: "100px", height: "100px"}}/>
                 <div className="col-8">
-                    <h3 className="font-weight-bold">{name}</h3>
+                    <Link to={`/profile/${id}`} ><h3 className="font-weight-bold text-dark">{name}</h3></Link>
                     <h4 className="text-muted">Certificações:</h4>
                     {renderCea(cea)}{renderCga(cga)}{renderCpa10(cpa10)}{renderCpa20(cpa20)}{renderCnpi(cnpi)}
                 </div>

@@ -1,9 +1,22 @@
 import React, { useState } from 'react'
 import Header from  '../../templates/header'
 import TCard from '../../templates/card'
+import {DATA} from '../../JSON/data'
 
 function Start (){
 
+
+    function renderData(DATA){
+        return(    
+            DATA.map((pers) => {
+                return(
+                    <TCard key={pers.id} id={pers.id} name={pers.name} cea={pers.cea} cpa20={pers.cpa20} cpa10={pers.cpa10} cga={pers.cga} cnpi={pers.cnpi} 
+                            presentation={pers.about} acoes={true} training={pers.training} consultory={pers.consultory} percent={pers.percent} course={pers.course}>
+                    </TCard>
+                )
+            } )
+        )
+    }
 
 
     return(
@@ -13,21 +26,7 @@ function Start (){
                 <div className="row">4
                     <div className="col-4 row"></div>
                     <div className="col-8 row">
-                        <TCard name="Jeorge Abc" cea={true} cpa20={true} cpa10={true} 
-                            presentation="asjdiaudncunva a0sijdoinvoscnd ionaiosncio j 
-                            iacnoinoinadvionnvapinco iadmiom
-                            ajsnocinasoianinoainscoinas" acoes={true} training="sim" consultory="sim" time="ano" percent="20%" course="não">
-                        </TCard>
-                        <TCard name="Jeorge Abc" cea={true} cpa20={true} cpa10={true} 
-                            presentation="asjdiaudncunva a0sijdoinvoscnd ionaiosncio j 
-                            iacnoinoinadvionnvapinco iadmiom
-                            ajsnocinasoianinoainscoinas" acoes={true} training="sim" consultory="sim" time="ano" percent="20%" course="não">
-                        </TCard>
-                        <TCard name="Jeorge Abc" cea={true} cpa20={true} cpa10={true} 
-                            presentation="asjdiaudncunva a0sijdoinvoscnd ionaiosncio j 
-                            iacnoinoinadvionnvapinco iadmiom
-                            ajsnocinasoianinoainscoinas" acoes={true} training="sim" consultory="sim" time="ano" percent="20%" course="não">
-                        </TCard>
+                        {renderData(DATA)}
                     </div>
                     
                 </div>
