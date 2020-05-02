@@ -37,6 +37,7 @@ function Header (){
                         </FormGroup>
                         <Button type="submit" className="mr-3" color="primary">Entrar</Button>
                         <Button onClick={toggle} color="danger">Cancelar</Button>
+                        <Link to="/register">Registre-se</Link>
                     </Form>
                 </ModalBody>
             </Modal>
