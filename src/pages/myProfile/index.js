@@ -21,7 +21,7 @@ import stars1 from '../../assets/1stars.png'
 import stars05 from '../../assets/0.5stars.png'
 
 import './styles.css'
-import {Row, Card, Col, Modal, ModalBody, FormGroup, Form, Label, Input, Button} from 'reactstrap'
+import {Row, Card, Col, Modal, ModalBody, FormGroup, Form, Label, Input, Button, Dropdown, DropdownItem, DropdownToggle, DropdownMenu} from 'reactstrap'
 
 // {name, imgF, tumb, local, facebook, instagram, linkedin, twitter, work,
 //     about, respRate, orderComp, onTime, rating,
@@ -39,13 +39,10 @@ function MyProfile ({data}){
     const [social, setSocial] = useState(false)
     const [certs, setCerts] = useState(false)
     
-    
-    const [cnpi, setCnpi] = useState('')
-    const [cea, setCea] = useState('')
-    const [cpa20, setCpa20] = useState('')
-    const [cpa10, setCpa10] = useState('')
-    const [cga, setCga] = useState('')
-
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [cert, setCert] = useState ('')
+    const [date, setDate] = useState('01/01/2020')
+    const [certId, setCertId] = useState('')
 
     if(data !== null && data !== undefined){
         const conteudo = 'lalallal'
@@ -299,6 +296,16 @@ function MyProfile ({data}){
             setCerts(!certs)
         }
 
+        function certificados(certificados){
+            if(certificados === ''){
+                return('Escolha um certificado')
+            }else{
+                return (certificados)
+            }
+        }
+
+        const toggle = () => setDropdownOpen(prevState => !prevState);
+
         return(
             <div>
                 <Header></Header>
@@ -383,29 +390,26 @@ function MyProfile ({data}){
                         </Form>
                     </ModalBody>
                 </Modal>
-                <Modal isOpen={certs} toggle={toggleCert}>
+                <Modal isOpen={certs} toggle={toggleCert} className="modal-md">
                     <ModalBody>
                         <Form className="container">
-                            <FormGroup className="row">
-                                <Label className="col-4 mt-2">CNPI:  </Label>
-                                <Input type="date" className="col-8" value={cnpi} onChange={e => setCnpi(e.target.value)}></Input>
+                            <FormGroup className="row justify-content-center">
+                                <Dropdown isOpen={dropdownOpen} toggle={toggle} className="col-8 p-0 pb-2 row">
+                                    <DropdownToggle caret className="col-12">
+                                        {certificados(cert)}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem onClick={() => setCert('CNPI')}>CNPI</DropdownItem>
+                                        <DropdownItem onClick={() => setCert('CGA')}>CGA</DropdownItem>
+                                        <DropdownItem onClick={() => setCert('CEA')}>CEA</DropdownItem>
+                                        <DropdownItem onClick={() => setCert('CPA10')}>CPA-10</DropdownItem>
+                                        <DropdownItem onClick={() => setCert('CPA20')}>CPA-20</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                                <Input type="text" value={certId} onChange={e => setCertId(e.target.value)} className="col-8 m-2" placeholder="link do certificado"></Input>
+                                <Input type="date" className="col-8 m-2" value={date} onChange={e => setDate(e.target.value)}></Input>
                             </FormGroup>
-                            <FormGroup className="row">
-                                <Label className="col-4 mt-2">CEA:  </Label>
-                                <Input type="date" className="col-8" value={cea} onChange={e => setCea(e.target.value)}></Input>
-                            </FormGroup>
-                            <FormGroup className="row">
-                                <Label className="col-4 mt-2">CGA:  </Label>
-                                <Input type="date" className="col-8" value={cga} onChange={e => setCga(e.target.value)}></Input>
-                            </FormGroup>
-                            <FormGroup className="row">
-                                <Label className="col-4 mt-2">CPA-10:  </Label>
-                                <Input type="date" className="col-8" value={cpa10} onChange={e => setCpa10(e.target.value)}></Input>
-                            </FormGroup>
-                            <FormGroup className="row">
-                                <Label className="col-4 mt-2">CPA-20:  </Label>
-                                <Input type="date" className="col-8" value={cpa20} onChange={e => setCpa20(e.target.value)}></Input>
-                            </FormGroup>
+                            
                             <FormGroup className="row">
                                 <Button className="ml-auto col-2 mr-2 bg-secondary" type="submit">Editar</Button>
                                 <Button className="col-2 text-muted border" onClick={toggleCert} color="white">Cancel</Button>
