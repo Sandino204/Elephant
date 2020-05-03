@@ -1,10 +1,11 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom'
-import Start from './pages/start'
+import Search from './pages/search'
 import Profile from './pages/profile'
 import {DATA} from './JSON/data'
 import Register from './pages/Register'
-
+import Home from './pages/home' 
+import Login from './pages/login'
 function Routes(){
 
     const profileWithId = ({match}) => {
@@ -17,7 +18,9 @@ function Routes(){
     return(
         <BrowserRouter>
             <Switch>
-                <Route exact path="/" component={Start} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login}></Route>
+                <Route exact path="/search" component={Search}></Route>
                 <Route path="/profile/:persId" component={profileWithId} />
                 <Route path="/register" component={Register} />
                 <Redirect to="/" /> 

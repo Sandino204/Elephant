@@ -1,0 +1,22 @@
+.login-page{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, rgb(142, 158, 171), rgb(238, 242, 243));
+}
+.login-div{
+    position: absolute;
+    top: 25vh;
+    height: 300px;
+    width: 400px;
+}
+.login-div img{
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+.login-div h2{
+    display: inline-block;
+}
+.login-div-1{
+    max-height: 150px;
+}

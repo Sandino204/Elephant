@@ -1,89 +1,47 @@
 import React, { useState } from 'react'
 import Header from '../../templates/header'
-import {Form, FormGroup, Input, Label, Button} from 'reactstrap'
+import {Nav, Row, Form, FormGroup, Input, InputGroup , Label, Button} from 'reactstrap'
 import './styles.css'
 import {Link} from 'react-router-dom'
+import Elep from '../../assets/elephant.png'
 
 function Register(){
 
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
-    const [about, setAbout] = useState('')
-    const [dateCea, setDateCea] = useState(null)
-    const [dateCga, setDateCga] = useState(null)
-    const [dateCnpi, setDateCnpi] = useState(null)
-    const [dateCpa10, setDateCpa10] = useState(null)
-    const [dateCpa20, setDateCpa20] = useState(null)
-    const [facebook, setFacebook] = useState(null)
-    const [linkedin, setLinkedin] = useState(null)
-    const [instagram, setInstagram] = useState(null)
-    const [twitter, setTwitter] = useState(null)
-    const [local, setLocal] = useState(null)
+    const [email, setEmail] = useState('')
+    const [type, setType] = useState('Independente')
+
 
     return(
         <div>
-            <Header></Header>
-            <div className="div">
-                <Form className="container m-5 justify-content-center shadow rounded"> 
-                    <h2 className="text-danger text-center">Se não ouver alguns dos campos deixe vazio</h2>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">Nome: </Label>
-                        <Input type="text" value={name} onChange={e => setName(e.target.value)} name="name" className="col-8 mt-2" placeholder="Digite seu nome completo"></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">Password: </Label>
-                        <Input type="password" value={password} onChange={e => setPassword(e.target.value)} name="password" className="col-8 mt-2" placeholder="Password"></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">Sobre:</Label>
-                        <textarea value={about} onChange={e => setAbout(e.target.value)} name="about" className="col-8 mt-2" placeholder="Escreva algo sobre você"></textarea>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">CEA: </Label>
-                        <Input className="col-8 mt-2" type="date" value={dateCea} onChange={e => setDateCea(e.target.value)}></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">CGA: </Label>
-                        <Input className="col-8 mt-2" type="date" value={dateCga} onChange={e => setDateCga(e.target.value)}></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">CNPI: </Label>
-                        <Input className="col-8 mt-2" type="date" value={dateCnpi} onChange={e => setDateCnpi(e.target.value)}></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">CPA-10: </Label>
-                        <Input className="col-8 mt-2" type="date" value={dateCpa10} onChange={e => setDateCpa10(e.target.value)}></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">CPA-20: </Label>
-                        <Input className="col-8 mt-2" type="date" value={dateCpa20} onChange={e => setDateCpa20(e.target.value)}></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">Local de trabalho: </Label>
-                        <Input className="col-8 mt-2" type="text" value={local} onChange={e => setLocal(e.target.value)}></Input>
-                    </FormGroup>
+            <div className="container-fluid p-0">
+                <Nav className="m-0 row shadow container-fluid">
+                    <Link to="/" className="col-4  ml-2 p-0 text-dark"> < img className="logo" src={Elep} alt="Logo"/> <h1 className="mb-0 mt-1" style={{fontSize: "1.7em"}}> <span className="text-muted">|</span> E L E P H A N T</h1></Link>
+                </Nav>
+                <Form className="div-register shadow">
+                    <h2 className="col-12 text-center mt-5 mb-5">SEJA BEM VINDO</h2>
+                    <InputGroup className="div-row mb-5 offset-2 col-8">
+                        <Button type="button" className="bg-secondary text-light mr-2" onClick={() => setType('Independente')}>Independente</Button>
+                        <Button type="button" className="bg-secondary text-light mr-2" onClick={() => setType('Consultor')}>Consultor</Button>
+                        <Button className="bg-secondary text-light mr-2" onClick={() => setType('Acessor')}>Acessor</Button>
+                    </InputGroup>
                     
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">Facebook: </Label>
-                        <Input className="col-8 mt-2" type="text" value={facebook} onChange={e => setFacebook(e.target.value)}></Input>
+                    <FormGroup className="col-12 justify-content-center">
+                        <Input className="offset-2 col-8" type="text" name="name" placeholder="Nome Completo" value={name} onChange={e => setName(e.target.value)}></Input>
                     </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">Linkedin: </Label>
-                        <Input className="col-8 mt-2" type="text" value={linkedin} onChange={e => setLinkedin(e.target.value)}></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">Twitter: </Label>
-                        <Input className="col-8 mt-2" type="text" value={twitter} onChange={e => setTwitter(e.target.value)}></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4">
-                        <Label className="col-2 mt-2">Instagram: </Label>
-                        <Input className="col-8 mt-2" type="text" value={instagram} onChange={e => setInstagram(e.target.value)}></Input>
-                    </FormGroup>
-                    <FormGroup className="row m-4 justify-content-end">
-                        <Button className="bg-primary mr-2 mb-5" type="submit">Enviar</Button>
-                        <Link to="/"><Button className="bg-secondary">Cancelar</Button></Link> 
+
+                    <FormGroup className="col-12 justify-content-center">
+                        <Input className="offset-2 col-8" type="email" name="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)}></Input>
+                    </FormGroup> 
+                    <FormGroup className="col-12 justify-content-center">
+                        <Input className="offset-2 col-8" type="password" name="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}></Input>
+                    </FormGroup>   
+                    <FormGroup className="col-12 justify-content-center">
+                        <Button className="offset-2 col-8" type="submit">Registrar-se</Button>
                     </FormGroup>
                 </Form>
+                <div className="background"></div>
             </div>
         </div>
     )
