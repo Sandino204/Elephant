@@ -6,6 +6,8 @@ import {DATA} from './JSON/data'
 import Register from './pages/Register'
 import Home from './pages/home' 
 import Login from './pages/login'
+import MyProfile from './pages/myProfile'
+
 function Routes(){
 
     const profileWithId = ({match}) => {
@@ -14,6 +16,13 @@ function Routes(){
         )
     }
 
+    const MyprofileWithId = ({match}) => {
+        return(
+            <MyProfile data={DATA.filter((pers) => pers.id === parseInt(match.params.myId, 10))[0]} />
+        )
+    }
+
+   
 
     return(
         <BrowserRouter>
@@ -21,8 +30,9 @@ function Routes(){
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login}></Route>
                 <Route exact path="/search" component={Search}></Route>
-                <Route path="/profile/:persId" component={profileWithId} />
-                <Route path="/register" component={Register} />
+                <Route path ="/profile/:persId" component={profileWithId} />
+                <Route path = "/myProfile/:myId" component={MyprofileWithId} />
+                <Route path ="/register" component={Register} />
                 <Redirect to="/" /> 
             </Switch>
         </BrowserRouter>

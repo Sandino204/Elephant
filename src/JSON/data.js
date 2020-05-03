@@ -17,7 +17,8 @@ export const DATA = [
         percent: 20,
         training: 'sim', 
         consultory: 'sim', 
-        course: 'não'
+        course: 'não', 
+        feedback: 3.7,
     },{
         id: 1,
         name: 'Jack Smith', 
@@ -36,7 +37,8 @@ export const DATA = [
         percent: 20,
         training: 'sim', 
         consultory: 'sim', 
-        course: 'não'
+        course: 'não', 
+        feedback: 2.5,
     }
 
 ]

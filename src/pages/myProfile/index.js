@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import imgF from   '../../assets/mountains.jpeg'
 import Header from '../../templates/header2'
 import tumb from  '../../assets/empresario.jpeg'
@@ -21,16 +21,35 @@ import stars1 from '../../assets/1stars.png'
 import stars05 from '../../assets/0.5stars.png'
 
 import './styles.css'
-import {Row, Card, Col} from 'reactstrap'
+import {Row, Card, Col, Modal, ModalBody, FormGroup, Form, Label, Input, Button} from 'reactstrap'
 
 // {name, imgF, tumb, local, facebook, instagram, linkedin, twitter, work,
 //     about, respRate, orderComp, onTime, rating,
 //     cpa10, cpa20, cea, cga}
 
-function Profile ({data}){
+function MyProfile ({data}){
+
+    const [aboutText, setAboutText] = useState('')
+    const [about, setAbout] = useState(false)
+    const [local, setLocal] = useState('')
+    const [facebook, setFacebook] = useState('')
+    const [instagram, setInstagram] = useState('')
+    const [twitter, setTwitter] = useState('')
+    const [linkedin, setLinkedin] = useState('')
+    const [social, setSocial] = useState(false)
+    const [certs, setCerts] = useState(false)
+    
+    
+    const [cnpi, setCnpi] = useState('')
+    const [cea, setCea] = useState('')
+    const [cpa20, setCpa20] = useState('')
+    const [cpa10, setCpa10] = useState('')
+    const [cga, setCga] = useState('')
+
 
     if(data !== null && data !== undefined){
         const conteudo = 'lalallal'
+
 
         function renderLocal(local){
             if(local !== null && local !== undefined){
@@ -267,6 +286,18 @@ function Profile ({data}){
                 )
             }
         }
+        
+        const toggleSocial = () => {
+            setSocial(!social)
+        }
+
+        const toggleAbout = () => {
+            setAbout(!about)
+        }
+
+        const toggleCert = () => {
+            setCerts(!certs)
+        }
 
         return(
             <div>
@@ -275,7 +306,7 @@ function Profile ({data}){
                     <img src={tumb} alt="tumb" style={{ height: "200px", width: "200px"}} className="img-thumbnail rounded-circle thumb"/>
                     <div className="row shadow">
                         <img className="col-12" src={imgF} alt="img" style={{ height: "250px"}}/>
-                        <h2 className="col-12 nome">{data.name} <i class="fa fa-check-circle"></i></h2>
+                        <h2 className="col-12 nome">{data.name} <i class="fa fa-check-circle"></i> <i className="fa fa-edit ml-auto la" onClick={toggleSocial}></i></h2>
                         <p className="col-12 nome nomep text-muted">{data.enterprise}</p>
                         <div className="nome col-12 mb-4">{renderLocal(data.local)}{renderFacebook(data.facebook)}{renderInstagram(data.instagram)}{renderTwitter(data.twitter)}{renderLinkedin(data.linkedin)}</div>
                     </div>
@@ -284,7 +315,7 @@ function Profile ({data}){
                             <Col md="12" className="row m-1">
                                 <Card className="col-12 mt-1 about shadow row">
                                     <div className="col-7">
-                                        <h5 className="mt-3 ml-3 text-dark ab">Sobre: </h5><hr></hr>
+                                        <h5 className="mt-3 ml-3 text-dark ab">Sobre: <i className="fa fa-edit ml-auto" onClick={toggleAbout}></i></h5><hr></hr>
                                         <p>{data.about}
                                         </p>
                                     </div>
@@ -295,7 +326,7 @@ function Profile ({data}){
                             </Col>
                             <Col md="12" className="row mt-5">
                                 <Card className="col-12 mt-1 certi shadow">
-                                    <h5 className="mt-3 ml-3 text-dark ab">Certificações: </h5><hr></hr>
+                                    <h5 className="mt-3 ml-3 text-dark ab">Certificações: <i className="fa fa-edit ml-auto" onClick={toggleCert}></i></h5><hr></hr>
                                     <div className="row">{renderCea(data.cea)}{renderCga(data.cga)}{renderCpa10(data.cpa10)}{renderCpa20(data.cpa20)}{renderCnpi(data.cnpi)}</div>
                                 </Card>
                             </Col>
@@ -308,6 +339,80 @@ function Profile ({data}){
                         </Row>
                     </div>
                 </div>
+                <Modal isOpen={social} className="modal-lg" toggle={toggleSocial}>
+                    <ModalBody>
+                        <Form className="container">
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">Local de trabalho: </Label>
+                                <Input type="text" className="col-8" value={local} onChange={e => setLocal(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">Facebook: </Label>
+                                <Input type="text" className="col-8" value={facebook} onChange={e => setFacebook(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">Twitter: </Label>
+                                <Input type="text" className="col-8" value={twitter} onChange={e => setTwitter(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">Instagram: </Label>
+                                <Input type="text" className="col-8" value={instagram} onChange={e => setInstagram(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">Linkedin: </Label>
+                                <Input type="text" className="col-8" value={linkedin} onChange={e => setLinkedin(e.target.value)}></Input>
+                            </FormGroup>
+                            
+                            <FormGroup className="row">
+                                <Button className="ml-auto col-2 mr-2 bg-secondary" type="submit">Editar</Button>
+                                <Button className="col-2 text-muted border" onClick={toggleSocial} color="white">Cancel</Button>
+                            </FormGroup>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+                <Modal isOpen={about} toggle={toggleAbout}>
+                    <ModalBody>
+                        <Form className="container">
+                            <FormGroup className="row">
+                                <textarea className="col-12" value={aboutText} name="about" onChange={e => setAboutText(e.target.value)}></textarea>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Button className="ml-auto col-2 mr-2 bg-secondary" type="submit">Editar</Button>
+                                <Button className="col-2 text-muted border" onClick={toggleAbout} color="white">Cancel</Button>
+                            </FormGroup>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+                <Modal isOpen={certs} toggle={toggleCert}>
+                    <ModalBody>
+                        <Form className="container">
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">CNPI:  </Label>
+                                <Input type="date" className="col-8" value={cnpi} onChange={e => setCnpi(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">CEA:  </Label>
+                                <Input type="date" className="col-8" value={cea} onChange={e => setCea(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">CGA:  </Label>
+                                <Input type="date" className="col-8" value={cga} onChange={e => setCga(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">CPA-10:  </Label>
+                                <Input type="date" className="col-8" value={cpa10} onChange={e => setCpa10(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Label className="col-4 mt-2">CPA-20:  </Label>
+                                <Input type="date" className="col-8" value={cpa20} onChange={e => setCpa20(e.target.value)}></Input>
+                            </FormGroup>
+                            <FormGroup className="row">
+                                <Button className="ml-auto col-2 mr-2 bg-secondary" type="submit">Editar</Button>
+                                <Button className="col-2 text-muted border" onClick={toggleCert} color="white">Cancel</Button>
+                            </FormGroup>
+                        </Form>
+                    </ModalBody>
+                </Modal>
             </div>
         )
     }else{
@@ -319,4 +424,4 @@ function Profile ({data}){
 
 }
 
-export default Profile
+export default MyProfile

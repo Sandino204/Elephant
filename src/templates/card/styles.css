@@ -4,3 +4,25 @@
 .card{
     height: 350px;
 }
+.md{
+    width: 700px;
+}
+.header-modal img{
+    display: inline-block;
+    height: 75px;
+    width: 75px;
+}
+.header-modal h4{
+    display: inline-block;
+}
+.div-modal-1 span{
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.5em;
+}
+.div-modal-1 p{
+    font-size: 0.7em;
+}

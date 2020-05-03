@@ -40,3 +40,18 @@
 .certi{
     height: 300px;
 }
+.nome .la{
+    display: none;
+}
+.nome:hover .la{
+    display: inline-block;
+}
+.ab i{
+    display: none;
+}
+.ab:hover i{
+    display: inline-block;
+}
+.cancel{
+    border: black solid 2px;
+}

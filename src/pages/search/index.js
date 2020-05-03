@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from  '../../templates/header'
+import Header from  '../../templates/header2'
 import TCard from '../../templates/card'
 import {DATA} from '../../JSON/data'
 
@@ -23,9 +23,8 @@ function Start (){
         <div>
             <Header></Header>
             <div container>
-                <div className="row">4
-                    <div className="col-4 row"></div>
-                    <div className="col-8 row">
+                <div className="row">
+                    <div className="offset-2 col-8 row">
                         {renderData(DATA)}
                     </div>
                     
